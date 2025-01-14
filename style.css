@@ -1,0 +1,89 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    background-color: #f0f0f0; 
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+    padding: 20px;
+    background-color: rgb(189, 227, 230); 
+    border-radius: 8px; 
+}
+
+.container .row {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.container .row button{
+    box-sizing: border-box;
+    height: 80px;
+    width: 50px;
+}
+
+.container #numbersOperator{
+    display: flex;
+}
+
+.container #numbersOperator #operators{
+    display: flex;
+    flex-direction: column;
+}
+
+.container #numbersOperator #operators button{
+    box-sizing: border-box;
+    height: 64px;
+}
+
+
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.5em;
+    text-align: right;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+}
+
+button {
+    padding: 20px;
+    font-size: 1.5em;
+    background-color: #e0e0e0;
+    border: none;
+    cursor: pointer;
+    min-width: 60px; 
+}
+
+button:hover {
+    background-color: #d0d0d0;
+}
+
+button:active {
+    background-color: #b0b0b0;
+}
+
