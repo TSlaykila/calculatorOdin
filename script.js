@@ -13,7 +13,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-        return "Error: Division by zero is undefined.";
+        alert("Error: Division by zero is undefined.");
     }
     return a / b;
 }
@@ -46,22 +46,31 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", (e) => {
 
             const value = e.target.innerHTML.trim();
+            console.log(value);
             if (value === "AC") {
                 display.value = "";
                 operatorSymbol = null;
-            } else if (["+", "-", "/", "*"].includes(value) && value !== '=' && display.value !== "") {
+            } else if (value === '.') {
+                if (!display.value.includes('.')) {
+                    display.value += value;
+                }
+            }            
+            else if (["+", "-", "/", "*"].includes(value) && value !== '=' && display.value !== "") {
+                // Next If is in case user press two operations without pressing '=', it wil automatically do it
                 if(number1 > 0 && operatorSymbol !== null){
-                    display.value = operate(number1, operatorSymbol, parseInt(display.value));
+                    display.value = operate(number1, operatorSymbol, parseFloat(display.value));
                     operatorSymbol = null;
                     number1 = 0; 
                 }
-                number1 = parseInt(display.value);
+                number1 = parseFloat(display.value);
                 operatorSymbol = value;
                 display.value = "";
-            } else if (value === "=" && operatorSymbol !== null) {
-                display.value = operate(number1, operatorSymbol, parseInt(display.value));
+            } else if (value === "=") {
+                if (operatorSymbol!== null){
+                display.value = operate(number1, operatorSymbol, parseFloat(display.value));
                 operatorSymbol = null;
                 number1 = 0;
+                }
             }
             else {
                 display.value += value;
