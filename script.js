@@ -35,7 +35,11 @@ function operate(a, operator, b){
     };
 };
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
+    let operatorSymbol = null;
+    let number1 = 0;
     const display = document.querySelector(".container #display")
     const buttons = document.querySelectorAll(".container button");
     buttons.forEach((button) => {
@@ -44,10 +48,21 @@ document.addEventListener("DOMContentLoaded", () => {
             const value = e.target.innerHTML.trim();
             if(value === "AC") {
                 display.value = "";
-            } else{
-            
+                operatorSymbol = null;
+            } else if(["+","-","/","*"].includes(value) && value !== '=' && display.value !== ""){
+                number1 = parseInt(display.value);
+                operatorSymbol = value;
+                display.value = "";
+            } else if(value === "=" && operatorSymbol !== null){
+                display.value = operate(number1,operatorSymbol,parseInt(display.value));
+                operatorSymbol = null;
+                number1 = 0;
+            }
+            else{
                 display.value += value;
             }
+
         })
     });
 });
+
