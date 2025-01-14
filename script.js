@@ -1,4 +1,4 @@
- 
+
 function add(a, b) {
     return a + b;
 }
@@ -15,23 +15,23 @@ function divide(a, b) {
     if (b === 0) {
         return "Error: Division by zero is undefined.";
     }
-    return a/ b;
+    return a / b;
 }
 
-function operate(a, operator, b){
-    switch(`${operator}`){
-        case "+":                                                                             
-            return add(a,b);
+function operate(a, operator, b) {
+    switch (`${operator}`) {
+        case "+":
+            return add(a, b);
             break;
         case "-":
-            return subtract(a,b);
+            return subtract(a, b);
             break;
         case "*":
-            return multiply(a,b);
+            return multiply(a, b);
             break;
         case "/":
-            return divide(a,b);
-            break;        
+            return divide(a, b);
+            break;
     };
 };
 
@@ -46,19 +46,24 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", (e) => {
 
             const value = e.target.innerHTML.trim();
-            if(value === "AC") {
+            if (value === "AC") {
                 display.value = "";
                 operatorSymbol = null;
-            } else if(["+","-","/","*"].includes(value) && value !== '=' && display.value !== ""){
+            } else if (["+", "-", "/", "*"].includes(value) && value !== '=' && display.value !== "") {
+                if(number1 > 0 && operatorSymbol !== null){
+                    display.value = operate(number1, operatorSymbol, parseInt(display.value));
+                    operatorSymbol = null;
+                    number1 = 0; 
+                }
                 number1 = parseInt(display.value);
                 operatorSymbol = value;
                 display.value = "";
-            } else if(value === "=" && operatorSymbol !== null){
-                display.value = operate(number1,operatorSymbol,parseInt(display.value));
+            } else if (value === "=" && operatorSymbol !== null) {
+                display.value = operate(number1, operatorSymbol, parseInt(display.value));
                 operatorSymbol = null;
                 number1 = 0;
             }
-            else{
+            else {
                 display.value += value;
             }
 
